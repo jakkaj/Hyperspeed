@@ -19,11 +19,15 @@ export default class gremlinClient implements contracts.IGremlinClient{
     return this._gremlinService.logger;
   }
 
-  constructor() {
+  constructor(config?:config) {
     this._glue = new glue();
     
     this._gremlinService = 
-      this._glue.container.get<contracts.IGremlinService>(contracts.tContracts.IGremlinService);    
+      this._glue.container.get<contracts.IGremlinService>(contracts.tContracts.IGremlinService);
+
+    if(config){
+      this._gremlinService.setConfig(config);
+    }    
   }
 
   async executeAsync(query:string):Promise<any>{

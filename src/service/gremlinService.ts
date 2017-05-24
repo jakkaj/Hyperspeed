@@ -21,25 +21,30 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
             return;
         }
 
-        this._config = this.configService.config;
+        if(!this._config==null){
+            this._config = this.configService.config;
+        }        
         
         //TODO: validate there are configs present. 
-        if(!this._config.ENDPOINT || this._config.ENDPOINT.length == 0){
+        if(!this._config.endpoint || this._config.endpoint.length == 0){
 
         }
 
         var cfg = { 
             "session": false, 
             "ssl": true, 
-            "user": `/dbs/${this._config.DATABASE}/colls/${this._config.COLLECTION}`,
-            "password": this._config.PRIMARYKEY
+            "user": `/dbs/${this._config.database}/colls/${this._config.collection}`,
+            "password": this._config.primayKey
         };
 
         this._client = gremlin.createClient(
             443, 
-            this._config.ENDPOINT,
+            this._config.endpoint,
             cfg 
         );
+  }
+  public setConfig(config:config){
+      this._config = config;
   }
 
   public async executeAsync(query:string):Promise<any>{

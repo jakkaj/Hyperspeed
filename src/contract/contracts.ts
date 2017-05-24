@@ -10,6 +10,7 @@ interface ILocalLogService{
 interface IGremlinService{
     executeAsync(query:string):Promise<any>;
     logger:ILocalLogService;
+    setConfig(config:config);
 }
 
 interface IGremlinClient{

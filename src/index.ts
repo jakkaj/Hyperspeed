@@ -1,3 +1,4 @@
 import gremlinClient from "./client/gremlinClient";
+var hyperspeed = gremlinClient;
 
-export default gremlinClient;
+module.exports = hyperspeed;
