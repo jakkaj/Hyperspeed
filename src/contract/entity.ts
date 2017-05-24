@@ -1,6 +1,6 @@
 interface config{
-    endpoint:string, 
-    primaryKey:string,
-    database:string,
-    collection:string
+    ENDPOINT:string, 
+    PRIMARYKEY:string,
+    DATABASE:string,
+    COLLECTION:string
 }

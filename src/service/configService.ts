@@ -8,10 +8,10 @@ export class configService extends serviceBase implements IConfigService {
         super();
         
         this._config = {
-            endpoint:process.env.ENDPOINT,
-            primaryKey:process.env.primaryKey, 
-            database:process.env.database,
-            collection: process.env.collection
+            ENDPOINT:process.env.ENDPOINT,
+            PRIMARYKEY:process.env.PRIMARYKEY, 
+            DATABASE:process.env.DATABASE,
+            COLLECTION: process.env.COLLECTION
         };
     }
 

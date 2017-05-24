@@ -10,16 +10,17 @@ import * as contracts from './contract/contracts';
 
 class cli{
 
-    private argv;
-    private gremlinClient:contracts.IGremlinClient;
-    private logger:contracts.ILocalLogService;
+    private _argv;
+    private _gremlinClient:contracts.IGremlinClient;
+    private _logger:contracts.ILocalLogService;
+    private _saveFile:string = "";
 
     async boot(argv: any) {
         
-        this.gremlinClient = new gremlinClient();
-        this.logger = this.gremlinClient.logger;
-       
-        this.argv = argv;
+        this._gremlinClient = new gremlinClient();
+        this._logger = this._gremlinClient.logger;
+      
+        this._argv = argv;
         this._process(argv);
        
         if(program.init){
@@ -28,23 +29,53 @@ class cli{
 
         if(program.config){
             if(!fs.existsSync(program.config)){                
-                this.logger.logWarning(`Could not find ${program.config}. Trying default .env`);
+                this._logger.logWarning(`Could not find ${program.config}. Trying default .env`);
                 this._defaultEnv();            
             }else{
                 dotenv.config({path: program.config});
             }            
         }else{
              this._defaultEnv();     
+        }     
+
+        this._saveFile = "";
+        if(program.save){
+            this._saveFile = program.save;
         }
 
+        if(program.query){
+           
+            await this.query(program.query);
+        }   
+
+        if(program.wait){
+            return true;
+        }
+
+        return false;
+    }
+
+    async query(query:string){
+
+        var result = await this._gremlinClient.executeAsync(query);
+        var stringResult = JSON.stringify(result);
         
+        this._logger.log(stringResult);
+        
+        if(this._saveFile!=""){
+            if(!fs.existsSync(this._saveFile)){
+                fs.writeFileSync(this._saveFile, stringResult);
+            }else{
+                fs.appendFileSync(this._saveFile, '\n' + stringResult);
+            }            
+        }
     }
 
     private _defaultEnv(){
         if(!fs.existsSync('./.env')){
-            this.logger.logError("Could not find a config file. Try --init first.")
+            this._logger.logError("Could not find a config file. Try --init first.")
         }else{            
-            this.logger.logGood('[Default .env]')         
+            this._logger.logGood('[Default .env]')         
             dotenv.config();
         }    
     }
@@ -56,12 +87,12 @@ class cli{
             var fn = path.join(dir, file);
             
             if(fs.existsSync(file)){
-                this.logger.logWarning(`Skipping init existing file ${fn}`);
+                this._logger.logWarning(`Skipping init existing file ${fn}`);
                 return;
             }
             
             fs.createReadStream(fn).pipe(fs.createWriteStream(file));
-            this.logger.logInfo(file);
+            this._logger.logInfo(file);
         });
     }
 
@@ -71,7 +102,9 @@ class cli{
             .option('-c, --config [configPath]', 'config file path')
             .option('-i, --init', 'init a sample config and query source file')
             .option('-q, --query [query]', 'run a gremlin query from the command line')
-            .option('-f, --file [queryFile]', 'run queries from a file')           
+            .option('-f, --file [queryFile]', 'run queries from a file')
+            .option('-s, --save [saveFile]', 'save the results to a file -  will append')
+            .option('-w, --wait', 'stay open, wait for more gremlin commands')
             .parse(argv);
     }
 
@@ -81,10 +114,22 @@ class cli{
 var c = new cli();
 
 c.boot(process.argv).then((e)=>{
-    if(e){       
+    if(e){   
+        console.log('Waiting for more gremlins...')
+        process.stdin.resume();
+        process.stdin.on('data', (k)=>{
+            
+            var input = k.toString();             
+
+            try{                                 
+                c.query(input);
+            }catch(e){
+                console.log(`[Problem] ${e}`);
+            }            
+        });    
     }
     else{
-
+        process.exit(0);
     }
 });
 

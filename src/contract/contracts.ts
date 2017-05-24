@@ -8,13 +8,14 @@ interface ILocalLogService{
 }
 
 interface IGremlinService{
-    init();
+    executeAsync(query:string):Promise<any>;
     logger:ILocalLogService;
 }
 
 interface IGremlinClient{
    
     logger:ILocalLogService;
+    executeAsync(query:string):Promise<any>;
 }
 
 interface IConfigService{

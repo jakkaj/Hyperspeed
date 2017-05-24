@@ -11,19 +11,24 @@ require('dotenv').config();
 @injectable()
 export default class gremlinClient implements contracts.IGremlinClient{  
   
-  private glue:glue;
+  private _glue:glue;
 
-  private gremlinService:contracts.IGremlinService;
+  private _gremlinService:contracts.IGremlinService;
   
   get logger():contracts.ILocalLogService{
-    return this.gremlinService.logger;
+    return this._gremlinService.logger;
   }
 
   constructor() {
-    this.glue = new glue();
-    this.gremlinService = 
-      this.glue.container.get<contracts.IGremlinService>(contracts.tContracts.IGremlinService);
+    this._glue = new glue();
     
+    this._gremlinService = 
+      this._glue.container.get<contracts.IGremlinService>(contracts.tContracts.IGremlinService);    
+  }
+
+  async executeAsync(query:string):Promise<any>{
+    var result = await this._gremlinService.executeAsync(query);
+    return result;
   }
 
 }
