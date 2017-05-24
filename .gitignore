@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+#us
+output_test
+.vscode
+
+
