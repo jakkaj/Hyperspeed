@@ -21,7 +21,7 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
             return;
         }
 
-        if(!this._config==null){
+        if(this._config==null){
             this._config = this.configService.config;
         }        
         
