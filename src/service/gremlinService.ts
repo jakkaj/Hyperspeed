@@ -52,8 +52,7 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
                 this.logger.logError(`[DB Error] -> ${err}`)
                 bad(err);
                 return;
-              }
-              this.logger.logGood('[OK]')
+              }              
               good(results);              
          });  
       });         
