@@ -17,6 +17,8 @@ class cli{
 
     async boot(argv: any) {
         
+        console.log("Hyperspeed is alpha. Please report issues https://github.com/jakkaj/Hyperspeed/issues")
+
         this._gremlinClient = new gremlinClient();
         this._logger = this._gremlinClient.logger;
       
