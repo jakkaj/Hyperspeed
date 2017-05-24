@@ -21,7 +21,13 @@ class cli{
         this._logger = this._gremlinClient.logger;
       
         this._argv = argv;
+       
         this._process(argv);
+
+        if (argv.length === 2) {
+            this._help();
+            return;
+        }     
        
         if(program.init){
             this._init();
@@ -69,6 +75,10 @@ class cli{
                 fs.appendFileSync(this._saveFile, '\n' + stringResult);
             }            
         }
+    }
+
+    private _help(){
+        program.help();
     }
 
     private _defaultEnv(){
