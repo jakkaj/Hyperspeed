@@ -2,14 +2,22 @@
 
 A command line tool and Node library for working with Cosmos DB. 
 
-This is a WIP.
+This is a work in progress. Please create [issues](https://github.com/jakkaj/Hyperspeed/issues) if you find bugs / things that could be better. 
+
+![hyperspeed](https://cloud.githubusercontent.com/assets/5225782/26386076/816e855c-4087-11e7-9c1b-740fc56bc116.gif)
+
+## In Node.js apps
 
 Create a .env file in the root of your node app that looks like this:
 
-ENDPOINT=<yourdb>.graphs.azure.com
-PRIMARYKEY=<yourkey>
+ENDPOINT=yourdb.graphs.azure.com
+
+PRIMARYKEY=yourkey
+
 DATABASE=graphdb
+
 COLLECTION=somegraphcollection
+
 
 ```javascript
 var hyperspeed = require('hyperspeed');
@@ -30,9 +38,7 @@ s.executeAsync('g.V().count()').then((result)=>{
 })
 ```
 
-
-
-## CLI
+## From the command prompt
 
 You can use the CLI to run queries. 
 
@@ -55,4 +61,4 @@ Usage: hs [options]
     -s, --save [saveFile]      save the results to a file -  will append
     -w, --wait                 stay open, wait for more gremlin commands
 
-Async and TypeScript compatible Cosmos DB graph client. Includes CLI tool. 
+ 
