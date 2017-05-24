@@ -1,6 +1,6 @@
 {
   "name": "hyperspeed",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Async and TypeScript compatible Cosmos DB graph client, includes CLI tool",
   "main": "lib/index.js",
   "bin": {
