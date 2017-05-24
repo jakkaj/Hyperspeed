@@ -14,8 +14,11 @@
     "url": "git+https://github.com/jakkaj/Hyperspeed"
   },
   "keywords": [
-    "Roslyn",
-    "C#",
+    "Cosmos",
+    "DB",
+    "Azure",
+    "Node", 
+    "Gremlin",
     "Graph"
   ],
   "author": "jakkaj",
