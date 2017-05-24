@@ -1,6 +1,6 @@
 {
   "name": "hyperspeed",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Async and TypeScript compatible Cosmos DB graph client, includes CLI tool",
   "main": "lib/index.js",
   "bin": {
@@ -17,7 +17,7 @@
     "Cosmos",
     "DB",
     "Azure",
-    "Node", 
+    "Node",
     "Gremlin",
     "Graph"
   ],
@@ -38,7 +38,7 @@
     "typescript": "^2.3.3",
     "@types/node": "^7.0.22"
   },
-  "dependencies": {      
+  "dependencies": {
     "commander": "^2.9.0",
     "dotenv": "^4.0.0",
     "gremlin-secure": "^1.0.2",
