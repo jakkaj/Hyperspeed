@@ -30,6 +30,16 @@ export default class gremlinClient implements contracts.IGremlinClient{
     }    
   }
 
+  async executeFileAsync(file:string, saveFile?:string):Promise<any>{
+    var result = await this._gremlinService.executeFileAsync(file, saveFile);
+    return result;
+  }
+
+  async executeLinesAsync(lines:string, saveFile?:string):Promise<any>{
+    var result = await this._gremlinService.executeLinesAsync(lines, saveFile);
+    return result;
+  }
+
   async executeAsync(query:string):Promise<any>{
     var result = await this._gremlinService.executeAsync(query);
     return result;

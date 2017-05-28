@@ -1,5 +1,7 @@
 import { injectable, inject } from 'inversify';
 import * as gremlin from 'gremlin-secure';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import { configBase } from "./serviceBase";
 import * as contracts from "../contract/contracts";
@@ -43,23 +45,101 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
             cfg 
         );
   }
-  public setConfig(config:config){
-      this._config = config;
-  }
+    public setConfig(config:config){
+        this._config = config;
+    }
 
-  public async executeAsync(query:string):Promise<any>{
-      this.init();
-      
-      return new Promise<any>((good, bad)=>{
-        this._client.execute(query, { }, (err, results) => {
-              
-              if (err) {
-                this.logger.logError(`[DB Error] -> ${err}`)
-                bad(err);
-                return;
-              }              
-              good(results);              
-         });  
-      });         
-  }
+    public async executeFileAsync(file:string, saveFile?:string):Promise<any>{
+        
+        if(!path.isAbsolute(file)){
+            file = path.join(process.cwd(), file);
+        }
+
+        if(!fs.existsSync(file)){
+            this.logger.logError(`[File not found] -> ${file}`);
+        }
+
+        var data:string = fs.readFileSync(file, 'utf-8');
+
+        var result = await this.executeLinesAsync(data, saveFile);
+
+        return result;
+    }
+
+    public async executeLinesAsync(lines:string, saveFile?:string):Promise<any>{
+        
+        var dSplit =lines.split('\n');
+
+        var commands:string[] = [];
+
+        var currentCommand:string = '';
+
+        for(var lineNumber in dSplit){
+            
+            var line = dSplit[lineNumber];
+
+            line = line.replace('\r', '');
+
+            if(line.startsWith('#')){
+                this.saveFile(line, saveFile);
+                this.logger.logInfo(line);
+                continue;
+            }
+
+            //blank links are the breaks between commands
+            if (!line || line.length == 0 || /^\s*$/.test(line)){
+                if(currentCommand.length > 0 && !/^\s*$/.test(currentCommand)){
+                    commands.push(currentCommand);
+                }
+                
+                try{
+                    var results = await this.executeAsync(currentCommand, saveFile);
+                    if(results && results.length && results.length > 0){
+                        this.logger.log(JSON.stringify(results));
+                    }
+                }catch(e){
+                    //maybe need to stop executing?
+                }
+                
+                currentCommand = '';
+            }else{
+                if(currentCommand!=''){
+                    currentCommand+='\n';
+                }
+                currentCommand+=line;
+            }
+        }
+    }
+
+    public async executeAsync(query:string, saveFile?:string):Promise<any>{
+        this.init();
+        
+        return new Promise<any>((good, bad)=>{
+            this._client.execute(query, { }, (err, results) => {
+                
+                if (err) {
+                    this.logger.logError(`[DB Error] -> ${err}`)
+                    this.saveFile(`#####Error\n${err}\n#####`, saveFile)
+                    bad(err);
+                    return;
+                }          
+
+                if(results && results.length && results.length > 0){
+                    this.saveFile(JSON.stringify(results), saveFile);         
+                }                
+
+                good(results);              
+            });  
+        });         
+    }
+
+    private saveFile(results:string, saveFile?:string){
+        if(saveFile && results){           
+            if(!fs.existsSync(saveFile)){
+                fs.writeFileSync(saveFile, results);
+            }else{
+                fs.appendFileSync(saveFile, '\n' + results);
+            }            
+        }
+    }
 }

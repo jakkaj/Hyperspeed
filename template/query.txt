@@ -1,0 +1,24 @@
+# You can pass files in like this using the -f param. 
+# Lines beginning with # are comments, they will show in console output and output files. 
+
+#running drop (this is commented out just incase!! If you're sure, un-comment it)
+#g.V().drop()
+
+g.addV('person').property('id', 'thomas').property('repo', 'jordo').property('firstName', 'Thomas').property('age', 44)
+
+g.addV('person').property('id', 'mary').property('repo', 'jordo').property('firstName', 'Mary').property('lastName', 'Andersen').property('age', 39)
+
+#adding edge
+g.V('thomas').addE('knows').to(g.V('mary'))
+
+#update thomas
+g.V('thomas').property('firstName', 'thomaschanged');
+
+#getthomas
+#
+#
+#
+g.V('thomas');
+
+#count
+g.V().count()

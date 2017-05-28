@@ -47,13 +47,17 @@ class cli{
         }     
 
         this._saveFile = "";
+
         if(program.save){
             this._saveFile = program.save;
         }
 
-        if(program.query){
-           
-            await this.query(program.query);
+        if(program.file){
+            await this._gremlinClient.executeFileAsync(program.file, this._saveFile);
+        }
+
+        if(program.query){           
+            await this.query(program.query, this._saveFile);
         }   
 
         if(program.wait){
@@ -63,20 +67,12 @@ class cli{
         return false;
     }
 
-    async query(query:string){
+    async query(query:string, saveFile?:string){
 
-        var result = await this._gremlinClient.executeAsync(query);
+        var result = await this._gremlinClient.executeAsync(query, saveFile);
         var stringResult = JSON.stringify(result);
         
         this._logger.log(stringResult);
-        
-        if(this._saveFile!=""){
-            if(!fs.existsSync(this._saveFile)){
-                fs.writeFileSync(this._saveFile, stringResult);
-            }else{
-                fs.appendFileSync(this._saveFile, '\n' + stringResult);
-            }            
-        }
     }
 
     private _help(){
@@ -114,7 +110,7 @@ class cli{
             .option('-c, --config [configPath]', 'config file path')
             .option('-i, --init', 'init a sample config and query source file')
             .option('-q, --query [query]', 'run a gremlin query from the command line')
-            .option('-f, --file [queryFile]', 'run queries from a file')
+            .option('-f, --file [queryFile]', 'run queries from a file. Blank line to separate gremlins. #lines for comments. ')
             .option('-s, --save [saveFile]', 'save the results to a file -  will append')
             .option('-w, --wait', 'stay open, wait for more gremlin commands')
             .parse(argv);

@@ -7,8 +7,14 @@ interface ILocalLogService{
     logException(output:string);
 }
 
+interface IConvertService{
+
+}
+
 interface IGremlinService{
     executeAsync(query:string):Promise<any>;
+    executeLinesAsync(lines:string, saveFile?:string):Promise<any>;
+    executeFileAsync(file:string, saveFile?:string):Promise<any>;
     logger:ILocalLogService;
     setConfig(config:config);
 }
@@ -16,7 +22,9 @@ interface IGremlinService{
 interface IGremlinClient{
    
     logger:ILocalLogService;
-    executeAsync(query:string):Promise<any>;
+    executeAsync(query:string, saveFile?:string):Promise<any>;
+    executeLinesAsync(lines:string, saveFile?:string):Promise<any>;
+    executeFileAsync(file:string, saveFile?:string):Promise<any>;
 }
 
 interface IConfigService{
@@ -27,7 +35,9 @@ let tContracts = {
     ILocalLogService: Symbol("ILocalLogService"), 
     IConfigService: Symbol("IConfigService") , 
     IGremlinClient: Symbol("IGremlinClient"),
-    IGremlinService: Symbol("IGremlinService")
+    IGremlinService: Symbol("IGremlinService"), 
+    IConvertService : Symbol("IConvertService")
 }
 
-export {tContracts, ILocalLogService, IConfigService, IGremlinClient, IGremlinService};
+export {tContracts, ILocalLogService, IConfigService, 
+    IGremlinClient, IGremlinService, IConvertService};
