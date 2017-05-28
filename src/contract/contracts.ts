@@ -12,19 +12,22 @@ interface IConvertService{
 }
 
 interface IGremlinService{
+    init();
     executeAsync(query:string):Promise<any>;
     executeLinesAsync(lines:string, saveFile?:string):Promise<any>;
     executeFileAsync(file:string, saveFile?:string):Promise<any>;
     logger:ILocalLogService;
     setConfig(config:config);
+    processingCommands:boolean;
 }
 
 interface IGremlinClient{
-   
+    init();
     logger:ILocalLogService;
     executeAsync(query:string, saveFile?:string):Promise<any>;
     executeLinesAsync(lines:string, saveFile?:string):Promise<any>;
     executeFileAsync(file:string, saveFile?:string):Promise<any>;
+    processingCommands:boolean;
 }
 
 interface IConfigService{

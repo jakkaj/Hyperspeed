@@ -56,6 +56,9 @@ class localLogService implements ILocalLogService {
 
     private _check(output:string, checkThings: string[]) :boolean
     {
+        if(!output){
+            return;
+        }
         var outputLower = output.toLowerCase();
 
         

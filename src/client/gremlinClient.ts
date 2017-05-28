@@ -45,6 +45,14 @@ export default class gremlinClient implements contracts.IGremlinClient{
     return result;
   }
 
+  init(){
+    this._gremlinService.init();
+  }
+
+  get processingCommands():boolean{
+    return this._gremlinService.processingCommands;
+  }
+
 }
 
 

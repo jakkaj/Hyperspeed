@@ -12,12 +12,15 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
   
     private _config: config;
     private _client:any = null;
-    
+    private _commandQueue:string[] = [];
+
+    public processingCommands: boolean = false;
+
     constructor() {
         super();        
     }
     
-    private init(){
+    public init(){
 
         if(this._client!=null){
             return;
@@ -44,6 +47,8 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
             this._config.endpoint,
             cfg 
         );
+
+        this.logger.logInfo('[Init complete]');
   }
     public setConfig(config:config){
         this._config = config;
@@ -66,11 +71,11 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
         return result;
     }
 
-    public async executeLinesAsync(lines:string, saveFile?:string):Promise<any>{
+    public async executeLinesAsync(lines:string, saveFile?:string):Promise<any>{       
         
         var dSplit =lines.split('\n');
-
-        var commands:string[] = [];
+        //so the last line will be run - hacky perhaps :/
+        dSplit.push('\n');        
 
         var currentCommand:string = '';
 
@@ -80,27 +85,23 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
 
             line = line.replace('\r', '');
 
-            if(line.startsWith('#')){
-                this.saveFile(line, saveFile);
-                this.logger.logInfo(line);
+            if(line.startsWith('#')){                
+                this._commandQueue.push(line);                
                 continue;
             }
 
-            //blank links are the breaks between commands
+            //blank links are the breaks between commands 
+            //this way you can have large commands over multiple lines run as a single command
             if (!line || line.length == 0 || /^\s*$/.test(line)){
+                
+                if(!currentCommand || currentCommand.length == 0 ||/^\s*$/.test(currentCommand)){
+                    continue;
+                }
+
                 if(currentCommand.length > 0 && !/^\s*$/.test(currentCommand)){
-                    commands.push(currentCommand);
-                }
-                
-                try{
-                    var results = await this.executeAsync(currentCommand, saveFile);
-                    if(results && results.length && results.length > 0){
-                        this.logger.log(JSON.stringify(results));
-                    }
-                }catch(e){
-                    //maybe need to stop executing?
-                }
-                
+                     this._commandQueue.push(currentCommand);
+                }                
+                                
                 currentCommand = '';
             }else{
                 if(currentCommand!=''){
@@ -109,27 +110,71 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
                 currentCommand+=line;
             }
         }
+
+        this._processCommands(saveFile);
+    }
+
+    private async _processCommands(saveFile?:string){
+        
+        if(this.processingCommands){
+            return;
+        }
+
+        this.processingCommands = true;
+        
+        while(this._commandQueue.length > 0){
+            var currentCommand = this._commandQueue[0];            
+            this._commandQueue.shift();
+
+            if(currentCommand.startsWith('#')){
+                this.logger.log(currentCommand);
+                this.saveFile(currentCommand, saveFile);
+                continue;
+            }
+
+            try{
+                var results = await this.executeAsync(currentCommand, saveFile);
+
+                if(results && results.length && results.length > 0){
+                    this.logger.log(JSON.stringify(results));
+                }
+            }catch(e){
+                //maybe need to stop executing?
+            }
+        }
+
+        this.processingCommands = false;
     }
 
     public async executeAsync(query:string, saveFile?:string):Promise<any>{
         this.init();
         
+        if(query.trim().length == 0){
+            return;
+        }
+
         return new Promise<any>((good, bad)=>{
-            this._client.execute(query, { }, (err, results) => {
-                
-                if (err) {
-                    this.logger.logError(`[DB Error] -> ${err}`)
-                    this.saveFile(`#####Error\n${err}\n#####`, saveFile)
-                    bad(err);
-                    return;
-                }          
+            try{
+                this._client.execute(query, { }, (err, results) => {
+                    
+                    if (err) {
+                        this.logger.logError(`[DB Error] -> ${err}`)
+                        this.saveFile(`#####Error\n${err}\n#####`, saveFile)
+                        bad(err);
+                        return;
+                    }          
 
-                if(results && results.length && results.length > 0){
-                    this.saveFile(JSON.stringify(results), saveFile);         
-                }                
+                    if(results && results.length && results.length > 0){
+                        this.saveFile(JSON.stringify(results), saveFile);         
+                    }                
 
-                good(results);              
-            });  
+                    good(results);              
+                });
+            }
+            catch(e){
+                this.logger.logError(`Problem in executeAsync ${e}`);
+                bad(e);
+            }  
         });         
     }
 

@@ -52,27 +52,32 @@ class cli{
             this._saveFile = program.save;
         }
 
-        if(program.file){
+        if(program.file){            
             await this._gremlinClient.executeFileAsync(program.file, this._saveFile);
         }
 
         if(program.query){           
-            await this.query(program.query, this._saveFile);
+            await this._gremlinClient.executeLinesAsync(program.query, this._saveFile);
         }   
 
         if(program.wait){
+            await this._gremlinClient.init();
             return true;
         }
 
         return false;
     }
 
-    async query(query:string, saveFile?:string){
-
-        var result = await this._gremlinClient.executeAsync(query, saveFile);
+    async query(query:string, saveFile?:string){      
+       
+        var result = await this._gremlinClient.executeLinesAsync(query, saveFile);
+        
         var stringResult = JSON.stringify(result);
         
-        this._logger.log(stringResult);
+        if(stringResult){
+            this._logger.log(stringResult);
+        }
+        
     }
 
     private _help(){
@@ -116,6 +121,10 @@ class cli{
             .parse(argv);
     }
 
+    get processingCommands():boolean{
+        return this._gremlinClient.processingCommands;
+    }
+
 }
 
 
@@ -124,20 +133,22 @@ var c = new cli();
 c.boot(process.argv).then((e)=>{
     if(e){   
         console.log('Waiting for more gremlins...')
-        process.stdin.resume();
+        process.stdin.resume();      
+        
+
         process.stdin.on('data', (k)=>{
             
-            var input = k.toString();             
+            var input = k.toString();   
+            c.query(input);
 
-            try{                                 
-                c.query(input);
-            }catch(e){
-                console.log(`[Problem] ${e}`);
-            }            
         });    
     }
     else{
-        process.exit(0);
+        setInterval(()=>{
+            if(!c.processingCommands){
+                process.exit(0);
+            }            
+        }, 500);
     }
 });
 
