@@ -46,7 +46,17 @@ To get started, type ```hs --init```. This will create a .env and sample query f
 
 If you use the -w option the app will keep the connection open and allow you to enter more queries. You can append to a file with ```-s```. 
 
-I'm still working on the ```-f``` option to run queries from a file. 
+You can run queries from a file by passing in a file with the ```-f``` parameter. Queries can be multi-line with a blank line to separate the queries. Lines beginning with # are comments and will show in the console output and in the output file if one is set. 
+
+```
+#add people
+g.addV('person').property('id', 'thomas').property('repo', 'jordo').property('firstName', 'Thomas').property('age', 44)
+
+g.addV('person').property('id', 'mary').property('repo', 'jordo').property('firstName', 'Mary').property('lastName', 'Andersen').property('age', 39)
+
+#adding edge
+g.V('thomas').addE('knows').to(g.V('mary'))
+```
 
 Usage: hs [options]
 
