@@ -5,6 +5,7 @@ import * as path from 'path';
 
 import { configBase } from "./serviceBase";
 import * as contracts from "../contract/contracts";
+import { config } from "../contract/entity";
 
 
 @injectable()
@@ -165,7 +166,7 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
                     }          
 
                     if(results && results.length && results.length > 0){
-                        this.saveFile(JSON.stringify(results), saveFile);         
+                        this.saveFile(JSON.stringify(results, null, '\t'), saveFile);         
                     }                
 
                     good(results);              

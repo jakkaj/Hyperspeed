@@ -60,10 +60,17 @@ class cli{
             await this._gremlinClient.executeLinesAsync(program.query, this._saveFile);
         }   
 
+        var fData = fs.readFileSync('test/dataData/testTree.json', 'utf-8');
+
+        var svg = this._gremlinClient.createDiagram(fData);
+        fs.writeFileSync('C:\\Users\\jakka\\demo\\hyper\\output.svg', svg);
+
         if(program.wait){
             await this._gremlinClient.init();
             return true;
         }
+
+   
 
         return false;
     }

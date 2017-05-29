@@ -5,6 +5,7 @@ import { injectable } from 'inversify';
 import { serviceBase, configBase } from "../service/serviceBase";
 import * as contracts from "../contract/contracts";
 import { glue } from "../glue/projectGlue";
+import {config} from '../contract/entity';
 
 require('dotenv').config();
 
@@ -14,7 +15,8 @@ export default class gremlinClient implements contracts.IGremlinClient{
   private _glue:glue;
 
   private _gremlinService:contracts.IGremlinService;
-  
+  private _diagramService:contracts.IDiagramService;
+
   get logger():contracts.ILocalLogService{
     return this._gremlinService.logger;
   }
@@ -25,9 +27,16 @@ export default class gremlinClient implements contracts.IGremlinClient{
     this._gremlinService = 
       this._glue.container.get<contracts.IGremlinService>(contracts.tContracts.IGremlinService);
 
+    this._diagramService = 
+      this._glue.container.get<contracts.IDiagramService>(contracts.tContracts.IDiagramService);
+
     if(config){
       this._gremlinService.setConfig(config);
     }    
+  }
+
+  createDiagram(json:string):string {
+      return this._diagramService.createDiagram(json);
   }
 
   async executeFileAsync(file:string, saveFile?:string):Promise<any>{

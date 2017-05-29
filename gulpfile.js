@@ -31,11 +31,11 @@ gulp.task('test',["compile:tests"], function() {
 });
 
 gulp.task('compile:tests',["clean:test"], function(){
-    var tsconfig = JSON.parse(fs.readFileSync('test/src/tsconfig.json', 'utf8'));
+    var tsconfig = JSON.parse(fs.readFileSync('test/tsconfig.json', 'utf8'));
 
     tsconfig.compilerOptions.outDir = dest_test;
 
-    return gulp.src(['test/src/**/*.ts'])
+    return gulp.src(['test/**/*.ts'])
         .pipe(typescript(tsconfig.compilerOptions))
         .pipe(gulp.dest(dest_test));
 });

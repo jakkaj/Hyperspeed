@@ -1,6 +1,7 @@
 
 import { serviceBase } from "./serviceBase";
 import { IConfigService } from "../contract/contracts";
+import { config } from "../contract/entity";
 
 export class configService extends serviceBase implements IConfigService {
     private _config:config;

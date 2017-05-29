@@ -5,6 +5,7 @@ import { Container } from "inversify"
 import * as contracts from '../contract/contracts';
 import { configService } from "../service/configService";
 import { localLogService } from "../service/localLogService";
+import { diagramService } from '../service/diagramService';
 import  gremlinClient from "../client/gremlinClient";
 
 class glue{
@@ -21,6 +22,10 @@ class glue{
              
         this.container.bind<contracts.IGremlinService>(contracts.tContracts.IGremlinService).
              to(gremlinService).inSingletonScope();   
+
+        this.container.bind<contracts.IDiagramService>(contracts.tContracts.IDiagramService).
+             to(diagramService).inSingletonScope();  
+             
     }    
 }
 

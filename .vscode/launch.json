@@ -10,8 +10,7 @@
             "name": "Launch Program",
             "program": "${workspaceRoot}/src/hs.ts",
             "args": [      
-                "-f", "C:\\Users\\jakka\\demo\\hyper\\input.txt",
-                "-s", "C:\\Users\\jakka\\demo\\hyper\\output.txt"
+                "-w"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "build:dev:fast",
@@ -26,7 +25,7 @@
             "name": "Launch Test",
             "program": "${workspaceRoot}/node_modules/ava/profile.js",
             "args": [
-                "${workspaceRoot}/build/output_test/tests/runTests/fileTests.js"
+                "${workspaceRoot}/output_test/test/runTests/testTraversals.js"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "build:test",

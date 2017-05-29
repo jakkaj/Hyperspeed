@@ -44,6 +44,7 @@
     "gremlin-secure": "^1.0.2",
     "inversify": "^4.1.0",
     "reflect-metadata": "^0.1.10",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "viz.js": "^1.8.0"
   }
 }

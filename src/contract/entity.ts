@@ -4,3 +4,5 @@ interface config{
     database:string,
     collection:string
 }
+
+export {config};

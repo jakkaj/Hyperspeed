@@ -1,0 +1,60 @@
+
+	[{
+		"labels": [
+			[],
+			[],
+			[]
+		],
+		"objects": [{
+				"id": "thomas",
+				"label": "person",
+				"type": "vertex",
+				"properties": {
+					"repo": [{
+						"id": "thomas|repo",
+						"value": "jordo"
+					}],
+					"firstName": [{
+						"id": "6efd30ab-440d-4f93-b880-439a4e83ca1c",
+						"value": "thomas2"
+					}],
+					"age": [{
+						"id": "acbdf8ea-8dee-4185-87bb-aec8920bdaee",
+						"value": 44
+					}]
+				}
+			},
+			{
+				"id": "cd851f33-e233-4330-9868-9cb8ceffe3b6",
+				"label": "knows",
+				"type": "edge",
+				"inVLabel": "person",
+				"outVLabel": "person",
+				"inV": "mary",
+				"outV": "thomas"
+			},
+			{
+				"id": "mary",
+				"label": "person",
+				"type": "vertex",
+				"properties": {
+					"repo": [{
+						"id": "mary|repo",
+						"value": "jordo"
+					}],
+					"firstName": [{
+						"id": "cbb845bc-848f-4e15-b3c2-1fcbef929031",
+						"value": "Mary"
+					}],
+					"lastName": [{
+						"id": "415fcd21-c571-4b1b-b3e9-0ef7bd66d30d",
+						"value": "Andersen"
+					}],
+					"age": [{
+						"id": "15fc6a4e-9360-4d9a-8157-31b39bf890d8",
+						"value": 39
+					}]
+				}
+			}
+		]
+	}]
