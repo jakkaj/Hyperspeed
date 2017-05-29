@@ -1,60 +1,1121 @@
-
-	[{
-		"labels": [
-			[],
-			[],
-			[]
-		],
-		"objects": [{
-				"id": "thomas",
-				"label": "person",
-				"type": "vertex",
-				"properties": {
-					"repo": [{
-						"id": "thomas|repo",
-						"value": "jordo"
-					}],
-					"firstName": [{
-						"id": "6efd30ab-440d-4f93-b880-439a4e83ca1c",
-						"value": "thomas2"
-					}],
-					"age": [{
-						"id": "acbdf8ea-8dee-4185-87bb-aec8920bdaee",
-						"value": 44
-					}]
-				}
-			},
-			{
-				"id": "cd851f33-e233-4330-9868-9cb8ceffe3b6",
-				"label": "knows",
-				"type": "edge",
-				"inVLabel": "person",
-				"outVLabel": "person",
-				"inV": "mary",
-				"outV": "thomas"
-			},
-			{
-				"id": "mary",
-				"label": "person",
-				"type": "vertex",
-				"properties": {
-					"repo": [{
-						"id": "mary|repo",
-						"value": "jordo"
-					}],
-					"firstName": [{
-						"id": "cbb845bc-848f-4e15-b3c2-1fcbef929031",
-						"value": "Mary"
-					}],
-					"lastName": [{
-						"id": "415fcd21-c571-4b1b-b3e9-0ef7bd66d30d",
-						"value": "Andersen"
-					}],
-					"age": [{
-						"id": "15fc6a4e-9360-4d9a-8157-31b39bf890d8",
-						"value": 39
-					}]
-				}
-			}
-		]
-	}]
+[{
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Lourdes Hunt",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Lourdes Hunt|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "54c474bc-bfa1-4cad-b9b2-1c180a96709b",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Shelby Hood",
+        "outV": "Lourdes Hunt"
+    }, {
+        "id": "Shelby Hood",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Shelby Hood|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Lourdes Hunt",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Lourdes Hunt|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "620589ce-a50c-4eb8-8a78-95113bf17a0a",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Thomas Salinas",
+        "outV": "Lourdes Hunt"
+    }, {
+        "id": "Thomas Salinas",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Thomas Salinas|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Lourdes Hunt",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Lourdes Hunt|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "381e5ada-6437-4134-89e3-3a87ddc46a59",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Whitney Ferrell",
+        "outV": "Lourdes Hunt"
+    }, {
+        "id": "Whitney Ferrell",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Whitney Ferrell|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Ballard Hancock",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ballard Hancock|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "06f9d521-817b-4470-8027-3ec02cc69269",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Ballard Hancock",
+        "outV": "Ballard Hancock"
+    }, {
+        "id": "Ballard Hancock",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ballard Hancock|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Ballard Hancock",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ballard Hancock|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "766fc582-7a93-4826-a186-2c01eac9b0b5",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Annie Branch",
+        "outV": "Ballard Hancock"
+    }, {
+        "id": "Annie Branch",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Annie Branch|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Ballard Hancock",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ballard Hancock|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "06f9d521-817b-4470-8027-3ec02cc69269",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Ballard Hancock",
+        "outV": "Ballard Hancock"
+    }, {
+        "id": "Ballard Hancock",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ballard Hancock|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Leigh Jensen",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Leigh Jensen|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "c00fc9c9-4f0a-448f-95a9-ed1bfbdba127",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Michelle Peterson",
+        "outV": "Leigh Jensen"
+    }, {
+        "id": "Michelle Peterson",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Michelle Peterson|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Michelle Peterson",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Michelle Peterson|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "c00fc9c9-4f0a-448f-95a9-ed1bfbdba127",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Michelle Peterson",
+        "outV": "Leigh Jensen"
+    }, {
+        "id": "Leigh Jensen",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Leigh Jensen|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Annie Branch",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Annie Branch|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "e042f0fc-e03c-40fe-b885-aee47ffb6369",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Ashley Craig",
+        "outV": "Annie Branch"
+    }, {
+        "id": "Ashley Craig",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ashley Craig|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Annie Branch",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Annie Branch|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "766fc582-7a93-4826-a186-2c01eac9b0b5",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Annie Branch",
+        "outV": "Ballard Hancock"
+    }, {
+        "id": "Ballard Hancock",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ballard Hancock|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Hurst Kline",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Hurst Kline|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "00976018-1a69-4c9c-99ce-74edc3be43fe",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Bowman Sargent",
+        "outV": "Hurst Kline"
+    }, {
+        "id": "Bowman Sargent",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bowman Sargent|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Freda Heath",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Freda Heath|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "5212ede0-53c1-4a87-9e0b-47636708a762",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Leah Hill",
+        "outV": "Freda Heath"
+    }, {
+        "id": "Leah Hill",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Leah Hill|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Freda Heath",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Freda Heath|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "daff94e6-9973-457f-85ac-8029b6c80763",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Caroline Le",
+        "outV": "Freda Heath"
+    }, {
+        "id": "Caroline Le",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Caroline Le|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Ashley Craig",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Ashley Craig|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "e042f0fc-e03c-40fe-b885-aee47ffb6369",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Ashley Craig",
+        "outV": "Annie Branch"
+    }, {
+        "id": "Annie Branch",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Annie Branch|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Shelby Hood",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Shelby Hood|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "90605695-d925-4408-bcb6-c31431759073",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Imogene Hughes",
+        "outV": "Shelby Hood"
+    }, {
+        "id": "Imogene Hughes",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Imogene Hughes|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Shelby Hood",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Shelby Hood|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "54c474bc-bfa1-4cad-b9b2-1c180a96709b",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Shelby Hood",
+        "outV": "Lourdes Hunt"
+    }, {
+        "id": "Lourdes Hunt",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Lourdes Hunt|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Imogene Hughes",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Imogene Hughes|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "90605695-d925-4408-bcb6-c31431759073",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Imogene Hughes",
+        "outV": "Shelby Hood"
+    }, {
+        "id": "Shelby Hood",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Shelby Hood|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Mathis Chen",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Mathis Chen|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "4c4b73d5-56d8-4ecb-9a34-35b64574c303",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Mathis Chen",
+        "outV": "Mathis Chen"
+    }, {
+        "id": "Mathis Chen",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Mathis Chen|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Mathis Chen",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Mathis Chen|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "4c4b73d5-56d8-4ecb-9a34-35b64574c303",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Mathis Chen",
+        "outV": "Mathis Chen"
+    }, {
+        "id": "Mathis Chen",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Mathis Chen|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Bowman Sargent",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bowman Sargent|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "381c508e-29ba-4f9f-bee4-866a87c433d0",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Bender Maxwell",
+        "outV": "Bowman Sargent"
+    }, {
+        "id": "Bender Maxwell",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bender Maxwell|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Bowman Sargent",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bowman Sargent|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "6535a2e5-4f26-4b65-b187-f1e4c9f7150a",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Katherine Molina",
+        "outV": "Bowman Sargent"
+    }, {
+        "id": "Katherine Molina",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Katherine Molina|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Bowman Sargent",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bowman Sargent|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "00976018-1a69-4c9c-99ce-74edc3be43fe",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Bowman Sargent",
+        "outV": "Hurst Kline"
+    }, {
+        "id": "Hurst Kline",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Hurst Kline|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Day Aguirre",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Day Aguirre|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "91b61dfc-45ef-43a8-a988-a85e8aa79438",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Wells Mcclain",
+        "outV": "Day Aguirre"
+    }, {
+        "id": "Wells Mcclain",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Wells Mcclain|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Leah Hill",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Leah Hill|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "eea6ff90-6558-4624-85d8-0743f37dc9cb",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Hart Santiago",
+        "outV": "Leah Hill"
+    }, {
+        "id": "Hart Santiago",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Hart Santiago|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Leah Hill",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Leah Hill|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "5212ede0-53c1-4a87-9e0b-47636708a762",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Leah Hill",
+        "outV": "Freda Heath"
+    }, {
+        "id": "Freda Heath",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Freda Heath|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Bender Maxwell",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bender Maxwell|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "381c508e-29ba-4f9f-bee4-866a87c433d0",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Bender Maxwell",
+        "outV": "Bowman Sargent"
+    }, {
+        "id": "Bowman Sargent",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bowman Sargent|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Thomas Salinas",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Thomas Salinas|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "620589ce-a50c-4eb8-8a78-95113bf17a0a",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Thomas Salinas",
+        "outV": "Lourdes Hunt"
+    }, {
+        "id": "Lourdes Hunt",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Lourdes Hunt|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Hart Santiago",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Hart Santiago|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "eea6ff90-6558-4624-85d8-0743f37dc9cb",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Hart Santiago",
+        "outV": "Leah Hill"
+    }, {
+        "id": "Leah Hill",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Leah Hill|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Caroline Le",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Caroline Le|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "daff94e6-9973-457f-85ac-8029b6c80763",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Caroline Le",
+        "outV": "Freda Heath"
+    }, {
+        "id": "Freda Heath",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Freda Heath|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Whitney Ferrell",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Whitney Ferrell|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "381e5ada-6437-4134-89e3-3a87ddc46a59",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Whitney Ferrell",
+        "outV": "Lourdes Hunt"
+    }, {
+        "id": "Lourdes Hunt",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Lourdes Hunt|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Katherine Molina",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Katherine Molina|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "6535a2e5-4f26-4b65-b187-f1e4c9f7150a",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Katherine Molina",
+        "outV": "Bowman Sargent"
+    }, {
+        "id": "Bowman Sargent",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Bowman Sargent|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}, {
+    "labels": [
+        [],
+        [],
+        []
+    ],
+    "objects": [{
+        "id": "Wells Mcclain",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Wells Mcclain|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }, {
+        "id": "91b61dfc-45ef-43a8-a988-a85e8aa79438",
+        "label": "knows",
+        "type": "edge",
+        "inVLabel": "person",
+        "outVLabel": "person",
+        "inV": "Wells Mcclain",
+        "outV": "Day Aguirre"
+    }, {
+        "id": "Day Aguirre",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "Day Aguirre|repo",
+                "value": "skdjfldl"
+            }]
+        }
+    }]
+}]

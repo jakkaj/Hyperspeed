@@ -60,6 +60,36 @@ class cli{
             await this._gremlinClient.executeLinesAsync(program.query, this._saveFile);
         }   
 
+        // var inJson = fs.readFileSync('test/dataData/generatedPeople.json', 'utf-8');
+        // var inParsed = JSON.parse(inJson);
+        // var gremlinLines = 'g.V().drop()\r\n\r\n';        
+
+        // for(var i in inParsed){
+        //     var s:string = "g.addV('person').property('repo', 'skdjfldl')";
+        //     var objIn = inParsed[i];
+            
+        //      s+= `.property('id', '${objIn.name}')`;
+
+        //     // for(var iProp in objIn){
+        //     //     var pVal = objIn[iProp];
+        //     //     var pName = iProp.replace('_', '');              
+        //     //      s+= `.property('${pName}', '${pVal}')`;
+        //     // }
+
+        //     gremlinLines += s + '\r\n\r\n';
+
+        //     var random = Math.floor(Math.random() * inParsed.length);
+
+        //     var randomObj = inParsed[random];
+
+        //     var fromId = randomObj['name'];
+        //     var toId = objIn['name'];
+        //     var edgeString = `g.V('${fromId}').addE('knows').to(g.V('${toId}'))`;
+        //     gremlinLines += edgeString + '\r\n\r\n';
+        // }           
+
+        // var saver = fs.writeFileSync('C:\\Users\\jakka\\demo\\hyper\\inputgen.txt', gremlinLines);
+
         var fData = fs.readFileSync('test/dataData/testTree.json', 'utf-8');
 
         var svg = this._gremlinClient.createDiagram(fData);
