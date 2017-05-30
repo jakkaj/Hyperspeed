@@ -20,6 +20,22 @@
             ],
             "sourceMaps": true
         },
+         {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Test",
+            "program": "${workspaceRoot}/test/runTests/testTraversals.ts",
+            "args": [      
+                "-q", "g.V().inE()",
+                "-d", "C:\\Users\\jakka\\demo\\hyper\\out2.svg"
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "build:test:fast",
+            "outFiles": [
+                "${workspaceRoot}/output_test/**/*.js"
+            ],
+            "sourceMaps": true
+        }
         {
             "type": "node",
             "request": "launch",

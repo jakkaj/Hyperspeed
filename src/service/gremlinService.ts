@@ -3,6 +3,8 @@ import * as gremlin from 'gremlin-secure';
 import * as fs from 'fs';
 import * as path from 'path';
 
+var utf8 = require('utf8');
+
 import { configBase } from "./serviceBase";
 import * as contracts from "../contract/contracts";
 import { config, graphOptions } from "../contract/entity";
@@ -116,7 +118,7 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
             }
         }
 
-        this._processCommands(options);
+        await this._processCommands(options);
     }
 
     private async _processCommands(options:graphOptions){
@@ -169,7 +171,8 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
 
         return new Promise<any>((good, bad)=>{
             try{
-                this._client.execute(query, { }, (err, results) => {
+                var q = utf8.encode(query);
+                this._client.execute(q, { }, (err, results) => {
                     
                     if (err) {
                         this.logger.logError(`[DB Error] -> ${err}`)

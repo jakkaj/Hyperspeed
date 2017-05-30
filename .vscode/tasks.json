@@ -47,6 +47,15 @@
 			"showOutput": "silent",			
 			"problemMatcher": "$tsc",
 			"isBuildCommand": true
+		},
+		{
+			"taskName": "build:test:fast",
+			"command": "tsc",
+			"isShellCommand": true,
+			"args": ["-p", "./test", "--listEmittedFiles", "--pretty"],
+			"showOutput": "silent",			
+			"problemMatcher": "$tsc",
+			"isBuildCommand": true
 		}//,
 		// {
 		// 	"taskName": "test:ava",
