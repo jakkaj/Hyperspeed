@@ -58,6 +58,7 @@ g.addV('person').property('id', 'mary').property('repo', 'jordo').property('firs
 g.V('thomas').addE('knows').to(g.V('mary'))
 ```
 
+```
 Usage: hs [options]
 
   Options:
@@ -71,7 +72,7 @@ Usage: hs [options]
     -s, --save [saveFile]        save the results to a file -  will append
     -w, --wait                   stay open, wait for more gremlin commands
     -d, --diagram [diagramFile]  create a diagram from a query and save it to the file
-
+```
  
 ## Create a diagram of your query
 
