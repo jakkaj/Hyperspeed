@@ -7,6 +7,7 @@ import { configService } from "../service/configService";
 import { localLogService } from "../service/localLogService";
 import { diagramService } from '../service/diagramService';
 import  gremlinClient from "../client/gremlinClient";
+import { convertService } from "../service/convertService";
 
 class glue{
     public container:Container;
@@ -25,6 +26,9 @@ class glue{
 
         this.container.bind<contracts.IDiagramService>(contracts.tContracts.IDiagramService).
              to(diagramService).inSingletonScope();  
+
+        this.container.bind<contracts.IConvertService>(contracts.tContracts.IConvertService).
+             to(convertService).inSingletonScope(); 
              
     }    
 }

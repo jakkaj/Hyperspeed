@@ -1,0 +1,45 @@
+[{
+        "id": "thomas",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "thomas|repo",
+                "value": "a"
+            }],
+            "firstName": [{
+                "id": "a9029ac5-7fce-40ab-b48d-3ed50de8f184",
+                "value": "Thomas"
+            }],
+            "age": [{
+                "id": "a050ea4e-338b-4c5f-87ca-f9634bf67eb6",
+                "value": 44
+            }]
+        }
+    },
+    {
+        "id": "jordan",
+        "label": "person",
+        "type": "vertex",
+        "properties": {
+            "repo": [{
+                "id": "jordan|repo",
+                "value": "a"
+            }],
+            "firstName": [{
+                "id": "a9029ac5-7fce-40ab-b48d-3ed50de8f184",
+                "value": "Thomas"
+            }],
+            "age": [{
+                "id": "a050ea4e-338b-4c5f-87ca-f9634bf67eb6",
+                "value": 44
+            }]
+        }
+    },
+    {
+        "id":"straightUpId",
+        "repo":"somerepo",
+        "firstName":"straightupfirstname",
+        "age": 43
+    }
+]

@@ -16,6 +16,7 @@ export default class gremlinClient implements contracts.IGremlinClient{
 
   private _gremlinService:contracts.IGremlinService;
   private _diagramService:contracts.IDiagramService;
+  private _convertService:contracts.IConvertService;
 
   get logger():contracts.ILocalLogService{
     return this._gremlinService.logger;
@@ -30,9 +31,16 @@ export default class gremlinClient implements contracts.IGremlinClient{
     this._diagramService = 
       this._glue.container.get<contracts.IDiagramService>(contracts.tContracts.IDiagramService);
 
+    this._convertService = 
+      this._glue.container.get<contracts.IConvertService>(contracts.tContracts.IConvertService);
+
     if(config){
       this._gremlinService.setConfig(config);
     }    
+  }
+
+  convertObjectToGremlin(obj:any, vertexType:string):string{
+     return this._convertService.convertObjectToGremlin(obj, vertexType);
   }
 
   createDiagramFromString(json:string):string {

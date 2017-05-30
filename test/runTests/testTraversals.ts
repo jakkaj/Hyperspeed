@@ -22,6 +22,13 @@ class runner{
         this.c = new gremlinClient();
     }
 
+    async runTestConverter(){
+        var inJson = fs.readFileSync('test/dataData/testConvertVertex.json', 'utf-8');
+        var obj = JSON.parse(inJson);
+        var result = this.c.convertObjectToGremlin(obj, 'person');
+        var r = result;
+    }
+
     async run(){
             
         var inJson = fs.readFileSync('test/dataData/generatedPeople.json', 'utf-8');
@@ -67,4 +74,4 @@ class runner{
 
 var r = new runner();
 
-r.run();
+r.runTestConverter();

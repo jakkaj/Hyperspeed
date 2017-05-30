@@ -35,7 +35,7 @@
                 "${workspaceRoot}/output_test/**/*.js"
             ],
             "sourceMaps": true
-        }
+        },
         {
             "type": "node",
             "request": "launch",
