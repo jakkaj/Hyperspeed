@@ -62,13 +62,25 @@ Usage: hs [options]
 
   Options:
 
-    -h, --help                 output usage information
-    -V, --version              output the version number
-    -c, --config [configPath]  config file path
-    -i, --init                 init a sample config and query source file
-    -q, --query [query]        run a gremlin query from the command line
-    -f, --file [queryFile]     run queries from a file
-    -s, --save [saveFile]      save the results to a file -  will append
-    -w, --wait                 stay open, wait for more gremlin commands
+   -h, --help                   output usage information
+    -V, --version                output the version number
+    -c, --config [configPath]    config file path
+    -i, --init                   init a sample config and query source file
+    -q, --query [query]          run a gremlin query from the command line
+    -f, --file [queryFile]       run queries from a file. Blank line to separate gremlins. #lines for comments.
+    -s, --save [saveFile]        save the results to a file -  will append
+    -w, --wait                   stay open, wait for more gremlin commands
+    -d, --diagram [diagramFile]  create a diagram from a query and save it to the file
 
  
+## Create a diagram of your query
+
+Hyperspeed can create a visual diagram of your graph query result and save it to a file in SVG format. 
+
+```hs -w -d /somepath/somefile.svg```
+
+In watch mode, enter your query and it will be graphed. Each successive query will overwrite the previously saved file. 
+
+<img src="https://cloud.githubusercontent.com/assets/5225782/26564750/7719703a-4528-11e7-9730-150669da118a.png" height="480"/>
+
+[full size image](https://cloud.githubusercontent.com/assets/5225782/26564750/7719703a-4528-11e7-9730-150669da118a.png).
