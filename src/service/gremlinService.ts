@@ -5,7 +5,7 @@ import * as path from 'path';
 
 import { configBase } from "./serviceBase";
 import * as contracts from "../contract/contracts";
-import { config } from "../contract/entity";
+import { config, graphOptions } from "../contract/entity";
 
 
 @injectable()
@@ -15,10 +15,14 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
     private _client:any = null;
     private _commandQueue:string[] = [];
 
+    private _diagramService:contracts.IDiagramService;
+
     public processingCommands: boolean = false;
 
-    constructor() {
+    constructor(@inject(contracts.tContracts.IDiagramService) diagramService:contracts.IDiagramService) {
         super();        
+
+        this._diagramService = diagramService;
     }
     
     public init(){
@@ -55,8 +59,8 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
         this._config = config;
     }
 
-    public async executeFileAsync(file:string, saveFile?:string):Promise<any>{
-        
+    public async executeFileAsync(file:string, options:graphOptions):Promise<any>{       
+              
         if(!path.isAbsolute(file)){
             file = path.join(process.cwd(), file);
         }
@@ -67,13 +71,13 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
 
         var data:string = fs.readFileSync(file, 'utf-8');
 
-        var result = await this.executeLinesAsync(data, saveFile);
+        var result = await this.executeLinesAsync(data, options);
 
         return result;
     }
 
-    public async executeLinesAsync(lines:string, saveFile?:string):Promise<any>{       
-        
+    public async executeLinesAsync(lines:string, options:graphOptions):Promise<any>{              
+       
         var dSplit =lines.split('\n');
         //so the last line will be run - hacky perhaps :/
         dSplit.push('\n');        
@@ -112,11 +116,15 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
             }
         }
 
-        this._processCommands(saveFile);
+        this._processCommands(options);
     }
 
-    private async _processCommands(saveFile?:string){
+    private async _processCommands(options:graphOptions){
         
+        if(!options){
+            options={};
+        }
+
         if(this.processingCommands){
             return;
         }
@@ -129,12 +137,12 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
 
             if(currentCommand.startsWith('#')){
                 this.logger.log(currentCommand);
-                this.saveFile(currentCommand, saveFile);
+                this.saveFile(currentCommand, options.saveFile);
                 continue;
             }
 
             try{
-                var results = await this.executeAsync(currentCommand, saveFile);
+                var results = await this.executeAsync(currentCommand, options);
 
                 if(results && results.length && results.length > 0){
                     this.logger.log(JSON.stringify(results));
@@ -147,7 +155,12 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
         this.processingCommands = false;
     }
 
-    public async executeAsync(query:string, saveFile?:string):Promise<any>{
+    public async executeAsync(query:string, options:graphOptions):Promise<any>{
+        
+        if(!options){
+            options = {};
+        }
+
         this.init();
         
         if(query.trim().length == 0){
@@ -160,14 +173,21 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
                     
                     if (err) {
                         this.logger.logError(`[DB Error] -> ${err}`)
-                        this.saveFile(`#####Error\n${err}\n#####`, saveFile)
+                        this.saveFile(`#####Error\n${err}\n#####`, options)
                         bad(err);
                         return;
                     }          
 
+                    var json:string = JSON.stringify(results, null, '\t');
+
                     if(results && results.length && results.length > 0){
-                        this.saveFile(JSON.stringify(results, null, '\t'), saveFile);         
-                    }                
+                        this.saveFile(json, options);         
+                    }  
+
+                    if(options.diagramFile){
+                        var svg = this._diagramService.createDiagramFromObj(results);
+                        this.saveDiagram(svg, options.diagramFile);
+                    }              
 
                     good(results);              
                 });
@@ -179,7 +199,27 @@ export class gremlinService extends configBase implements contracts.IGremlinServ
         });         
     }
 
-    private saveFile(results:string, saveFile?:string){
+    private saveDiagram(svg:string, saveFile:string){
+        
+        if(!path.isAbsolute(saveFile)){
+            saveFile = path.join(process.cwd(), saveFile);
+        }
+
+        fs.writeFileSync(saveFile, svg);
+    }
+
+    private saveFile(results:string, options:graphOptions){
+        
+        if(!options){
+            options = {};
+        }
+
+        if(!options.saveFile){
+            return;
+        }
+
+        var saveFile = options.saveFile;
+
         if(saveFile && results){           
             if(!fs.existsSync(saveFile)){
                 fs.writeFileSync(saveFile, results);

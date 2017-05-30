@@ -9,14 +9,16 @@ class diagramService extends configBase implements IDiagramService {
     private _dotBuilder:dotBuilder;
     
     constructor() {
-        super();
-        
+        super();        
     }
 
-    createDiagram(json:string): string{
-        try{
-            var obj = JSON.parse(json);
+    createDiagramFromString(json:string):string{
+        var obj = JSON.parse(json);
+        return this.createDiagramFromObj(obj);
+    }
 
+    createDiagramFromObj(obj:any): string{
+        try{
             var nodes:[any[], any[]] = [[], []];
             
             this.walkTree(obj, nodes);
@@ -45,9 +47,11 @@ class diagramService extends configBase implements IDiagramService {
 
         }
     }
+    
     buildGraph(dot){
-            return viz(dot, { format: "svg" });
-        }
+            return viz(dot, { format: "svg" });    
+    }
+    
     walkTree(obj:any, elements:[any[], any[]]){
         
         if(typeof(obj) == "object"){

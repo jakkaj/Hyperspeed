@@ -1,6 +1,6 @@
 
 
-import { config } from "./entity";
+import { config, graphOptions } from "./entity";
 
 interface ILocalLogService {
     logError(output:string);
@@ -17,9 +17,9 @@ interface IConvertService{
 
 interface IGremlinService{
     init();
-    executeAsync(query:string):Promise<any>;
-    executeLinesAsync(lines:string, saveFile?:string):Promise<any>;
-    executeFileAsync(file:string, saveFile?:string):Promise<any>;
+    executeAsync(query:string, options:graphOptions):Promise<any>;
+    executeLinesAsync(lines:string, options:graphOptions):Promise<any>;
+    executeFileAsync(file:string, options:graphOptions):Promise<any>;
     logger:ILocalLogService;
     setConfig(config:config);
     processingCommands:boolean;
@@ -28,11 +28,11 @@ interface IGremlinService{
 interface IGremlinClient{
     init();
     logger:ILocalLogService;
-    executeAsync(query:string, saveFile?:string):Promise<any>;
-    executeLinesAsync(lines:string, saveFile?:string):Promise<any>;
-    executeFileAsync(file:string, saveFile?:string):Promise<any>;
+    executeAsync(query:string, options:graphOptions):Promise<any>;
+    executeLinesAsync(lines:string, options:graphOptions):Promise<any>;
+    executeFileAsync(file:string, options:graphOptions):Promise<any>;
     processingCommands:boolean;
-    createDiagram(json:string): string;
+    createDiagramFromString(json:string): string;
 }
 
 interface IConfigService{
@@ -40,7 +40,8 @@ interface IConfigService{
 }
 
 interface IDiagramService{
-    createDiagram(json:string): string;
+    createDiagramFromString(json:string): string;
+    createDiagramFromObj(obj:any): string;
 }
 
 let tContracts = {

@@ -5,7 +5,7 @@ import { injectable } from 'inversify';
 import { serviceBase, configBase } from "../service/serviceBase";
 import * as contracts from "../contract/contracts";
 import { glue } from "../glue/projectGlue";
-import {config} from '../contract/entity';
+import {config, graphOptions} from '../contract/entity';
 
 require('dotenv').config();
 
@@ -35,22 +35,26 @@ export default class gremlinClient implements contracts.IGremlinClient{
     }    
   }
 
-  createDiagram(json:string):string {
-      return this._diagramService.createDiagram(json);
+  createDiagramFromString(json:string):string {
+      return this._diagramService.createDiagramFromString(json);
   }
 
-  async executeFileAsync(file:string, saveFile?:string):Promise<any>{
-    var result = await this._gremlinService.executeFileAsync(file, saveFile);
+  createDiagramFromObj(obj:any):string {
+      return this._diagramService.createDiagramFromString(obj);
+  }
+
+  async executeFileAsync(file:string, options:graphOptions):Promise<any>{
+    var result = await this._gremlinService.executeFileAsync(file, options);
     return result;
   }
 
-  async executeLinesAsync(lines:string, saveFile?:string):Promise<any>{
-    var result = await this._gremlinService.executeLinesAsync(lines, saveFile);
+  async executeLinesAsync(lines:string, options:graphOptions):Promise<any>{
+    var result = await this._gremlinService.executeLinesAsync(lines, options);
     return result;
   }
 
-  async executeAsync(query:string):Promise<any>{
-    var result = await this._gremlinService.executeAsync(query);
+  async executeAsync(query:string, options:graphOptions):Promise<any>{
+    var result = await this._gremlinService.executeAsync(query, options);
     return result;
   }
 

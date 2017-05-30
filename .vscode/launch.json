@@ -10,7 +10,8 @@
             "name": "Launch Program",
             "program": "${workspaceRoot}/src/hs.ts",
             "args": [      
-                "-w"
+                "-q", "g.V().inE()",
+                "-d", "C:\\Users\\jakka\\demo\\hyper\\out2.svg"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "build:dev:fast",

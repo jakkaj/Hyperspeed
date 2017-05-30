@@ -7,13 +7,14 @@ import * as path from 'path';
 
 import gremlinClient from './client/gremlinClient';
 import * as contracts from './contract/contracts';
+import { graphOptions } from "./contract/entity";
 
 class cli{
 
     private _argv;
     private _gremlinClient:contracts.IGremlinClient;
-    private _logger:contracts.ILocalLogService;
-    private _saveFile:string = "";
+    private _logger:contracts.ILocalLogService;    
+    private _options:graphOptions;
 
     async boot(argv: any) {
         
@@ -25,6 +26,9 @@ class cli{
         this._argv = argv;
        
         this._process(argv);
+        
+
+        this._options = {};
 
         if (argv.length === 2) {
             this._help();
@@ -44,21 +48,25 @@ class cli{
             }            
         }else{
              this._defaultEnv();     
-        }     
+        }           
 
-        this._saveFile = "";
+        if(program.save){            
+            this._options.saveFile = program.save;
+        }
 
-        if(program.save){
-            this._saveFile = program.save;
+        if(program.diagram){
+            this._options.diagramFile = program.diagram;
         }
 
         if(program.file){            
-            await this._gremlinClient.executeFileAsync(program.file, this._saveFile);
+            await this._gremlinClient.executeFileAsync(program.file, this._options);
         }
 
         if(program.query){           
-            await this._gremlinClient.executeLinesAsync(program.query, this._saveFile);
+            await this._gremlinClient.executeLinesAsync(program.query, this._options);
         }   
+
+
 
         // var inJson = fs.readFileSync('test/dataData/generatedPeople.json', 'utf-8');
         // var inParsed = JSON.parse(inJson);
@@ -90,24 +98,22 @@ class cli{
 
         // var saver = fs.writeFileSync('C:\\Users\\jakka\\demo\\hyper\\inputgen.txt', gremlinLines);
 
-        var fData = fs.readFileSync('test/dataData/testTree.json', 'utf-8');
+        // var fData = fs.readFileSync('test/dataData/testTree.json', 'utf-8');
 
-        var svg = this._gremlinClient.createDiagram(fData);
-        fs.writeFileSync('C:\\Users\\jakka\\demo\\hyper\\output.svg', svg);
+        // var svg = this._gremlinClient.createDiagram(fData);
+        // fs.writeFileSync('C:\\Users\\jakka\\demo\\hyper\\output.svg', svg);
 
         if(program.wait){
             await this._gremlinClient.init();
             return true;
-        }
-
-   
+        }   
 
         return false;
     }
 
-    async query(query:string, saveFile?:string){      
+    async query(query:string){      
        
-        var result = await this._gremlinClient.executeLinesAsync(query, saveFile);
+        var result = await this._gremlinClient.executeLinesAsync(query, this._options);
         
         var stringResult = JSON.stringify(result);
         
@@ -155,6 +161,7 @@ class cli{
             .option('-f, --file [queryFile]', 'run queries from a file. Blank line to separate gremlins. #lines for comments. ')
             .option('-s, --save [saveFile]', 'save the results to a file -  will append')
             .option('-w, --wait', 'stay open, wait for more gremlin commands')
+            .option('-d, --diagram [diagramFile]', 'create a diagram from a query and save it to the file')
             .parse(argv);
     }
 

@@ -5,4 +5,9 @@ interface config{
     collection:string
 }
 
-export {config};
+interface graphOptions{
+    saveFile?:string,
+    diagramFile?:string
+}
+
+export {config, graphOptions};
