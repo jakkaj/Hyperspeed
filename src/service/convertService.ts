@@ -3,19 +3,21 @@ import { IConvertService } from "../contract/contracts";
 
 class convertService extends configService implements IConvertService{
     
-    public convertArrayToGremlin(obj:any, vertexType:string):string{
+    public convertObjectToE
+
+    public convertArrayToGremlinVertices(obj:any, vertexType:string):string{
         var gremlin = '';
         for(var i in obj){
-            gremlin += this.convertObjectToGremlin(obj[i], vertexType);
+            gremlin += this.convertObjectToGremlinVertices(obj[i], vertexType);
         }
 
         return gremlin;
     }
 
-    public convertObjectToGremlin(obj:any, vertexType:string):string{
+    public convertObjectToGremlinVertices(obj:any, vertexType:string):string{
         
         if(obj instanceof Array){
-            return this.convertArrayToGremlin(obj, vertexType);
+            return this.convertArrayToGremlinVertices(obj, vertexType);
         }
 
         var gremlin = `g.addV('${vertexType}')`;

@@ -39,8 +39,8 @@ export default class gremlinClient implements contracts.IGremlinClient{
     }    
   }
 
-  convertObjectToGremlin(obj:any, vertexType:string):string{
-     return this._convertService.convertObjectToGremlin(obj, vertexType);
+  convertObjectToGremlinVertices(obj:any, vertexType:string):string{
+     return this._convertService.convertObjectToGremlinVertices(obj, vertexType);
   }
 
   createDiagramFromString(json:string):string {
