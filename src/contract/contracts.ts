@@ -12,8 +12,9 @@ interface ILocalLogService {
 }
 
 interface IConvertService{
-    convertArrayToGremlinVertices(obj:any, vertexType:string):string;
-    convertObjectToGremlinVertices(obj:any, vertexType:string):string;
+    convertArrayToGremlinVertices(obj:any, vertexLabel:string):string;
+    convertObjectToGremlinVertices(obj:any, vertexLabel:string):string;
+    convertObjectToGremlinEdges(obj:any, edgeLabel?:string):string;
 }
 
 interface IGremlinService{
@@ -34,7 +35,8 @@ interface IGremlinClient{
     executeFileAsync(file:string, options:graphOptions):Promise<any>;
     processingCommands:boolean;
     createDiagramFromString(json:string): string;
-    convertObjectToGremlinVertices(obj:any, vertexType:string):string;
+    convertObjectToGremlinVertices(obj:any, vertexLabel:string):string;
+    convertObjectToGremlinEdges(obj:any, edgeLabel?:string):string;
 }
 
 interface IConfigService{

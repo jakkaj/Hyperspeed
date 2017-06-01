@@ -22,10 +22,21 @@ class runner{
         this.c = new gremlinClient();
     }
 
+    async runEdgeConverter(){
+        var obj = {
+            inVLabel:"Jordan",
+            outVLabel:"Mary", 
+            label:"Knows",
+            someProperty: "Some property is cool"
+        }
+
+        var result = this.c.convertObjectToGremlinEdges(obj);
+    }
+
     async runTestConverter(){
         var inJson = fs.readFileSync('test/dataData/testConvertVertex.json', 'utf-8');
         var obj = JSON.parse(inJson);
-        var result = this.c.convertObjectToGremlin(obj, 'person');
+        var result = this.c.convertObjectToGremlinVertices(obj, 'person');
         var r = result;
     }
 
@@ -74,4 +85,4 @@ class runner{
 
 var r = new runner();
 
-r.runTestConverter();
+r.runEdgeConverter();
