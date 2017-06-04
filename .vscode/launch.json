@@ -11,7 +11,7 @@
             "program": "${workspaceRoot}/src/hs.ts",
             "args": [      
                 "-q", "g.V().inE()",
-                "-d", "C:\\Users\\jakka\\demo\\hyper\\out2.svg"
+                "-d", "C:\\Users\\jak\\demo\\hyper\\neato.svg"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "build:dev:fast",

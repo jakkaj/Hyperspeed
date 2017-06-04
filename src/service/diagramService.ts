@@ -49,7 +49,7 @@ class diagramService extends configBase implements IDiagramService {
     }
     
     buildGraph(dot){
-            return viz(dot, { format: "svg" });    
+            return viz(dot, { format: "svg", "engine":"neato"});    
     }
     
     walkTree(obj:any, elements:[any[], any[]]){

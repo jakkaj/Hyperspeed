@@ -2,10 +2,10 @@
 class dotBuilder{
     build(nodes, edge, title){
         var builder = "digraph app {\r\n";
-        builder += "graph [ fontname=Consolas,center=true," +
-        "nodesep=.8," +
-        "ranksep=\".2 equally\"," + 
-        "sep=2.2" +
+        builder += "graph [ model=circuit,overlap=prism,fontname=Consolas,center=true," +
+        "nodesep=3," +
+        
+        "sep=1" +
         "];";
         
         //builder += "graph [ bgcolor=white, fontname=Arial, fontcolor=black, " +
