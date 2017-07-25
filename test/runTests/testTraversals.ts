@@ -85,4 +85,4 @@ class runner{
 
 var r = new runner();
 
-r.runEdgeConverter();
+r.run();
